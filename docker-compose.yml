@@ -1,0 +1,60 @@
+version: "3.7"
+services:
+  event-reminder-api:
+    container_name: event-reminder-api
+    build:
+      context: .
+      dockerfile: EventReminder.Services.Api/Dockerfile
+    restart: always
+    depends_on:
+      - db-server
+      - rabbit-mq
+    ports:
+      - "8080:80"
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Development"
+    networks:
+      - event-reminder
+  event-reminder-notifications:
+    container_name: event-reminder-notifications
+    build:
+      context: .
+      dockerfile: EventReminder.Services.Notifications/Dockerfile
+    restart: always
+    depends_on:
+      - db-server
+      - rabbit-mq
+    ports:
+      - "8081:80"
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Development"
+    networks:
+      - event-reminder
+  db-server:
+    container_name: db-server
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    volumes:
+      - event-reminder-data:/var/opt/mssql
+    ports:
+      - "1433:1433"
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "super_strong_password_123"
+    networks:
+      - event-reminder
+  rabbit-mq:
+    container_name: rabbitmq
+    image: rabbitmq:3.8.9-management
+    hostname: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - event-reminder
+
+volumes:
+  event-reminder-data:
+
+networks:
+  event-reminder:
+    driver: bridge
