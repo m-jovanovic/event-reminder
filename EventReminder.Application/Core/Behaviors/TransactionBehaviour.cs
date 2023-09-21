@@ -6,7 +6,7 @@ using EventReminder.Application.Core.Abstractions.Messaging;
 using MediatR;
 using Microsoft.EntityFrameworkCore.Storage;
 
-namespace EventReminder.Application.Core.Behaviours
+namespace EventReminder.Application.Core.Behaviors
 {
     /// <summary>
     /// Represents the transaction behaviour middleware.
@@ -25,8 +25,7 @@ namespace EventReminder.Application.Core.Behaviours
         /// <param name="unitOfWork">The unit of work.</param>
         public TransactionBehaviour(IUnitOfWork unitOfWork) => _unitOfWork = unitOfWork;
 
-        /// <inheritdoc />
-        public async Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
+        public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
         {
             if (request is IQuery<TResponse>)
             {

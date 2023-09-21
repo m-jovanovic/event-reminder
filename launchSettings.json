@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "Docker Compose": {
+      "commandName": "DockerCompose",
+      "commandVersion": "1.0",
+      "serviceActions": {
+        "eventreminder.services.api": "StartDebugging",
+        "eventreminder.services.notifications": "StartDebugging"
+      }
+    }
+  }
+}

@@ -1,6 +1,6 @@
-﻿using System;
-using EventReminder.Application.Core.Abstractions.Messaging;
+﻿using EventReminder.Application.Core.Abstractions.Messaging;
 using EventReminder.Domain.Events;
+using System;
 using Newtonsoft.Json;
 
 namespace EventReminder.Application.FriendshipRequests.Events.FriendshipRequestAccepted

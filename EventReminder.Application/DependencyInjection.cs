@@ -1,8 +1,7 @@
-﻿using System.Reflection;
-using EventReminder.Application.Core.Behaviours;
+﻿using EventReminder.Application.Core.Behaviors;
 using FluentValidation;
-using MediatR;
 using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
 
 namespace EventReminder.Application
 {
@@ -17,11 +16,14 @@ namespace EventReminder.Application
         {
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
-            services.AddMediatR(Assembly.GetExecutingAssembly());
+            services.AddMediatR(cfg =>
+            {
+                cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
 
-            services.AddScoped(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
+                cfg.AddOpenBehavior(typeof(ValidationBehaviour<,>));
 
-            services.AddScoped(typeof(IPipelineBehavior<,>), typeof(TransactionBehaviour<,>));
+                cfg.AddOpenBehavior(typeof(TransactionBehaviour<,>));
+            });
 
             return services;
         }
