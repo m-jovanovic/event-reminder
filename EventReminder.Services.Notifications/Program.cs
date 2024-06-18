@@ -1,14 +1,35 @@
-using Microsoft.AspNetCore.Hosting;
+using EventReminder.BackgroundTasks;
+using EventReminder.Infrastructure;
+using EventReminder.Persistence;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace EventReminder.Services.Notifications
-{
-    public class Program
-    {
-        public static void Main(string[] args) => CreateHostBuilder(args).Build().Run();
+var builder = WebApplication.CreateBuilder(args);
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder => webBuilder.UseStartup<Startup>());
-    }
+// Add services to the container.
+builder.Services
+    .AddHttpContextAccessor()
+    .AddInfrastructure(builder.Configuration)
+    .AddPersistence(builder.Configuration)
+    .AddBackgroundTasks(builder.Configuration);
+
+builder.Services.AddControllers();
+
+var app = builder.Build();
+
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
+{
+    app.UseDeveloperExceptionPage();
 }
+
+app.UseHttpsRedirection();
+
+app.UseRouting();
+
+app.UseAuthorization();
+
+app.MapControllers();
+
+app.Run();

@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using EventReminder.Application.Core.Abstractions.Authentication;
 using EventReminder.Application.Core.Abstractions.Data;
 using EventReminder.Application.Core.Abstractions.Messaging;
-using EventReminder.Domain;
 using EventReminder.Domain.Core.Errors;
 using EventReminder.Domain.Core.Primitives.Maybe;
 using EventReminder.Domain.Core.Primitives.Result;

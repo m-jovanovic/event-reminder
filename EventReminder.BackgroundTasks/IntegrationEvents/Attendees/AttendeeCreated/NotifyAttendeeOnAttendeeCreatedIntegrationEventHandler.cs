@@ -2,7 +2,6 @@
 using System.Threading;
 using System.Threading.Tasks;
 using EventReminder.Application.Attendees.Events.AttendeeCreated;
-using EventReminder.Application.Core.Abstractions.Messaging;
 using EventReminder.Application.Core.Abstractions.Notifications;
 using EventReminder.BackgroundTasks.Abstractions.Messaging;
 using EventReminder.Contracts.Emails;

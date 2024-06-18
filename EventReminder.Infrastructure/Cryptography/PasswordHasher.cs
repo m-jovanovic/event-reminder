@@ -21,7 +21,7 @@ namespace EventReminder.Infrastructure.Cryptography
         /// <summary>
         /// Initializes a new instance of the <see cref="PasswordHasher"/> class.
         /// </summary>
-        public PasswordHasher() => _rng = new RNGCryptoServiceProvider();
+        public PasswordHasher() => _rng = RandomNumberGenerator.Create();
 
         /// <inheritdoc />
         public string HashPassword(Password password)

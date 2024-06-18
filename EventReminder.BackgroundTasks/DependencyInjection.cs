@@ -2,7 +2,6 @@
 using EventReminder.BackgroundTasks.Services;
 using EventReminder.BackgroundTasks.Settings;
 using EventReminder.BackgroundTasks.Tasks;
-using MediatR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -18,7 +17,7 @@ namespace EventReminder.BackgroundTasks
         /// <returns>The same service collection.</returns>
         public static IServiceCollection AddBackgroundTasks(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddMediatR(Assembly.GetExecutingAssembly());
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
 
             services.Configure<BackgroundTaskSettings>(configuration.GetSection(BackgroundTaskSettings.SettingsKey));
 

@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using System.Text.Json.Serialization.Metadata;
 using EventReminder.Application.Core.Abstractions.Messaging;
 using EventReminder.Infrastructure.Messaging.Settings;
 using Microsoft.Extensions.Options;
-using Newtonsoft.Json;
 using RabbitMQ.Client;
 
 namespace EventReminder.Infrastructure.Messaging
@@ -24,7 +26,7 @@ namespace EventReminder.Infrastructure.Messaging
         public IntegrationEventPublisher(IOptions<MessageBrokerSettings> messageBrokerSettingsOptions)
         {
             _messageBrokerSettings = messageBrokerSettingsOptions.Value;
-            
+
             IConnectionFactory connectionFactory = new ConnectionFactory
             {
                 HostName = _messageBrokerSettings.HostName,
@@ -43,10 +45,14 @@ namespace EventReminder.Infrastructure.Messaging
         /// <inheritdoc />
         public void Publish(IIntegrationEvent integrationEvent)
         {
-            string payload = JsonConvert.SerializeObject(integrationEvent, typeof(IIntegrationEvent), new JsonSerializerSettings
-            {
-                TypeNameHandling = TypeNameHandling.Auto
-            });
+            string payload = JsonSerializer.Serialize(integrationEvent, typeof(IIntegrationEvent), 
+                new JsonSerializerOptions
+                {
+                    PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+                    TypeInfoResolver = new DefaultJsonTypeInfoResolver(),
+                    UnknownTypeHandling = JsonUnknownTypeHandling.JsonElement,
+                    WriteIndented = true,
+                });
 
             byte[] body = Encoding.UTF8.GetBytes(payload);
 
