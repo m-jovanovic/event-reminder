@@ -26,7 +26,7 @@ namespace EventReminder.Application.Core.Behaviours
         public TransactionBehaviour(IUnitOfWork unitOfWork) => _unitOfWork = unitOfWork;
 
         /// <inheritdoc />
-        public async Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
+        public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
         {
             if (request is IQuery<TResponse>)
             {

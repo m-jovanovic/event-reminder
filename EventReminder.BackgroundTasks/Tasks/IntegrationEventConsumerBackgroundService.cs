@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using System.Text.Json.Serialization.Metadata;
 using System.Threading;
 using System.Threading.Tasks;
 using EventReminder.Application.Core.Abstractions.Messaging;
@@ -9,7 +12,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using Newtonsoft.Json;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 
@@ -92,10 +94,14 @@ namespace EventReminder.BackgroundTasks.Tasks
         {
             string body = Encoding.UTF8.GetString(eventArgs.Body.Span);
 
-            var integrationEvent = JsonConvert.DeserializeObject<IIntegrationEvent>(body, new JsonSerializerSettings
-            {
-                TypeNameHandling = TypeNameHandling.Auto
-            });
+            var integrationEvent = JsonSerializer.Deserialize<IIntegrationEvent>(body,
+                new JsonSerializerOptions
+                {
+                    PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+                    TypeInfoResolver = new DefaultJsonTypeInfoResolver(),
+                    UnknownTypeHandling = JsonUnknownTypeHandling.JsonElement,
+                    WriteIndented = true,
+                });
 
             using IServiceScope scope = _serviceProvider.CreateScope();
 

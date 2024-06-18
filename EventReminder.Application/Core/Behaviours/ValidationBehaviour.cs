@@ -28,7 +28,7 @@ namespace EventReminder.Application.Core.Behaviours
         public ValidationBehaviour(IEnumerable<IValidator<TRequest>> validators) => _validators = validators;
 
         /// <inheritdoc />
-        public async Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
+        public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
         {
             if (request is IQuery<TResponse>)
             {

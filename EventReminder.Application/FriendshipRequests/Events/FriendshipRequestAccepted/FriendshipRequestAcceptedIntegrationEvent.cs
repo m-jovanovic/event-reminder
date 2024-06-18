@@ -1,7 +1,7 @@
 ﻿using System;
+using System.Text.Json.Serialization;
 using EventReminder.Application.Core.Abstractions.Messaging;
 using EventReminder.Domain.Events;
-using Newtonsoft.Json;
 
 namespace EventReminder.Application.FriendshipRequests.Events.FriendshipRequestAccepted
 {
