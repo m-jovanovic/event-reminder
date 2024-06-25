@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Linq.Expressions;
-using EventReminder.Domain.Entities;
+using EventReminder.Domain.Events;
+using EventReminder.Domain.Invitations;
+using EventReminder.Domain.Users;
 
 namespace EventReminder.Persistence.Specifications
 {

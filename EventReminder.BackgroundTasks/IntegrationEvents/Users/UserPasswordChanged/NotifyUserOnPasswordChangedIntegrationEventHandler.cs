@@ -1,14 +1,13 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
-using EventReminder.Application.Core.Abstractions.Notifications;
-using EventReminder.Application.Users.Events.PasswordChanged;
+using EventReminder.Application.Abstractions.Notifications;
+using EventReminder.Application.Users.ChangePassword;
 using EventReminder.BackgroundTasks.Abstractions.Messaging;
 using EventReminder.Contracts.Emails;
 using EventReminder.Domain.Core.Errors;
 using EventReminder.Domain.Core.Exceptions;
 using EventReminder.Domain.Core.Primitives.Maybe;
-using EventReminder.Domain.Entities;
-using EventReminder.Domain.Repositories;
+using EventReminder.Domain.Users;
 
 namespace EventReminder.BackgroundTasks.IntegrationEvents.Users.UserPasswordChanged
 {

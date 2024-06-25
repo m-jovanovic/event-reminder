@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using EventReminder.Application.Core.Abstractions.Data;
-using EventReminder.Domain.Entities;
-using EventReminder.Domain.Repositories;
+using EventReminder.Application.Abstractions.Data;
+using EventReminder.Domain.Events;
+using EventReminder.Domain.Users;
 using EventReminder.Persistence.Specifications;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;

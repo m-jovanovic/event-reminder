@@ -1,5 +1,9 @@
-﻿using EventReminder.Application.Core.Abstractions.Data;
-using EventReminder.Domain.Repositories;
+﻿using EventReminder.Application.Abstractions.Data;
+using EventReminder.Domain.Events;
+using EventReminder.Domain.Friendships;
+using EventReminder.Domain.Invitations;
+using EventReminder.Domain.Notifications;
+using EventReminder.Domain.Users;
 using EventReminder.Persistence.Infrastructure;
 using EventReminder.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -18,7 +22,7 @@ namespace EventReminder.Persistence
         /// <returns>The same service collection.</returns>
         public static IServiceCollection AddPersistence(this IServiceCollection services, IConfiguration configuration)
         {
-            string connectionString = configuration.GetConnectionString(ConnectionString.SettingsKey);
+            string connectionString = configuration.GetConnectionString(ConnectionString.SettingsKey)!;
 
             services.AddSingleton(new ConnectionString(connectionString));
 

@@ -1,17 +1,14 @@
-﻿using System;
-using System.Threading.Tasks;
-using EventReminder.Application.Invitations.Commands.AcceptInvitation;
-using EventReminder.Application.Invitations.Commands.RejectInvitation;
-using EventReminder.Application.Invitations.Queries.GetInvitationById;
-using EventReminder.Application.Invitations.Queries.GetPendingInvitations;
-using EventReminder.Application.Invitations.Queries.GetSentInvitations;
+﻿using EventReminder.Application.Invitations.AcceptInvitation;
+using EventReminder.Application.Invitations.GetInvitationById;
+using EventReminder.Application.Invitations.GetPendingInvitations;
+using EventReminder.Application.Invitations.GetSentInvitations;
+using EventReminder.Application.Invitations.RejectInvitation;
 using EventReminder.Contracts.Invitations;
 using EventReminder.Domain.Core.Primitives.Maybe;
 using EventReminder.Domain.Core.Primitives.Result;
 using EventReminder.Services.Api.Contracts;
 using EventReminder.Services.Api.Infrastructure;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EventReminder.Services.Api.Controllers

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
-using EventReminder.Application.Core.Abstractions.Data;
-using EventReminder.Application.Core.Abstractions.Messaging;
+using EventReminder.Application.Abstractions.Data;
+using EventReminder.Application.Abstractions.Messaging;
 using MediatR;
 using Microsoft.EntityFrameworkCore.Storage;
 

@@ -1,10 +1,8 @@
-﻿using System;
-using System.Threading.Tasks;
-using EventReminder.Application.PersonalEvents.Commands.CancelPersonalEvent;
-using EventReminder.Application.PersonalEvents.Commands.CreatePersonalEvent;
-using EventReminder.Application.PersonalEvents.Commands.UpdatePersonalEvent;
-using EventReminder.Application.PersonalEvents.Queries.GetPersonalEventById;
-using EventReminder.Application.PersonalEvents.Queries.GetPersonalEvents;
+﻿using EventReminder.Application.PersonalEvents.CancelPersonalEvent;
+using EventReminder.Application.PersonalEvents.CreatePersonalEvent;
+using EventReminder.Application.PersonalEvents.GetPersonalEventById;
+using EventReminder.Application.PersonalEvents.GetPersonalEvents;
+using EventReminder.Application.PersonalEvents.UpdatePersonalEvent;
 using EventReminder.Contracts.Common;
 using EventReminder.Contracts.PersonalEvents;
 using EventReminder.Domain.Core.Errors;
@@ -13,7 +11,6 @@ using EventReminder.Domain.Core.Primitives.Result;
 using EventReminder.Services.Api.Contracts;
 using EventReminder.Services.Api.Infrastructure;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EventReminder.Services.Api.Controllers

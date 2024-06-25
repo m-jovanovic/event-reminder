@@ -2,7 +2,7 @@
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using EventReminder.Application.Core.Abstractions.Messaging;
+using EventReminder.Application.Abstractions.Messaging;
 using EventReminder.BackgroundTasks.Services;
 using EventReminder.Infrastructure.Messaging.Settings;
 using Microsoft.Extensions.DependencyInjection;

@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
-using EventReminder.Application.Core.Abstractions.Data;
-using EventReminder.Domain.Entities;
-using EventReminder.Domain.Repositories;
+using EventReminder.Application.Abstractions.Data;
+using EventReminder.Domain.Friendships;
+using EventReminder.Domain.Users;
 using EventReminder.Persistence.Specifications;
 
 namespace EventReminder.Persistence.Repositories

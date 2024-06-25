@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using EventReminder.Application.Core.Abstractions.Data;
+using EventReminder.Application.Abstractions.Data;
 using EventReminder.Domain.Core.Primitives;
 using EventReminder.Domain.Core.Primitives.Maybe;
 using EventReminder.Persistence.Specifications;

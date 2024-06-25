@@ -1,5 +1,5 @@
 ﻿using System;
-using EventReminder.Application.Core.Abstractions.Common;
+using EventReminder.Application.Abstractions.Common;
 
 namespace EventReminder.Infrastructure.Common
 {

@@ -1,6 +1,5 @@
-﻿using EventReminder.Domain.Entities;
-using EventReminder.Domain.Enumerations;
-using EventReminder.Domain.ValueObjects;
+﻿using EventReminder.Domain.Events;
+using EventReminder.Domain.Users;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

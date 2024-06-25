@@ -6,6 +6,8 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
+#nullable disable
+
 namespace EventReminder.Persistence.Migrations
 {
     [DbContext(typeof(EventReminderDbContext))]
@@ -15,11 +17,12 @@ namespace EventReminder.Persistence.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .UseIdentityColumns()
-                .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.0-rc.1.20451.13");
+                .HasAnnotation("ProductVersion", "8.0.6")
+                .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
-            modelBuilder.Entity("EventReminder.Domain.Entities.Attendee", b =>
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("EventReminder.Domain.Events.Attendee", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -57,7 +60,7 @@ namespace EventReminder.Persistence.Migrations
                     b.ToTable("Attendee");
                 });
 
-            modelBuilder.Entity("EventReminder.Domain.Entities.Event", b =>
+            modelBuilder.Entity("EventReminder.Domain.Events.Event", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -67,9 +70,6 @@ namespace EventReminder.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bit")
                         .HasDefaultValue(false);
-
-                    b.Property<int>("Category")
-                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedOnUtc")
                         .HasColumnType("datetime2");
@@ -101,9 +101,11 @@ namespace EventReminder.Persistence.Migrations
                     b.ToTable("Event");
 
                     b.HasDiscriminator<int>("EventType");
+
+                    b.UseTphMappingStrategy();
                 });
 
-            modelBuilder.Entity("EventReminder.Domain.Entities.Friendship", b =>
+            modelBuilder.Entity("EventReminder.Domain.Friendships.Friendship", b =>
                 {
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
@@ -124,7 +126,7 @@ namespace EventReminder.Persistence.Migrations
                     b.ToTable("Friendship");
                 });
 
-            modelBuilder.Entity("EventReminder.Domain.Entities.FriendshipRequest", b =>
+            modelBuilder.Entity("EventReminder.Domain.Friendships.FriendshipRequest", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -172,7 +174,7 @@ namespace EventReminder.Persistence.Migrations
                     b.ToTable("FriendshipRequest");
                 });
 
-            modelBuilder.Entity("EventReminder.Domain.Entities.Invitation", b =>
+            modelBuilder.Entity("EventReminder.Domain.Invitations.Invitation", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -220,7 +222,7 @@ namespace EventReminder.Persistence.Migrations
                     b.ToTable("Invitation");
                 });
 
-            modelBuilder.Entity("EventReminder.Domain.Entities.Notification", b =>
+            modelBuilder.Entity("EventReminder.Domain.Notifications.Notification", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -266,7 +268,7 @@ namespace EventReminder.Persistence.Migrations
                     b.ToTable("Notification");
                 });
 
-            modelBuilder.Entity("EventReminder.Domain.Entities.User", b =>
+            modelBuilder.Entity("EventReminder.Domain.Users.User", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -296,16 +298,16 @@ namespace EventReminder.Persistence.Migrations
                     b.ToTable("User");
                 });
 
-            modelBuilder.Entity("EventReminder.Domain.Entities.GroupEvent", b =>
+            modelBuilder.Entity("EventReminder.Domain.Events.GroupEvent", b =>
                 {
-                    b.HasBaseType("EventReminder.Domain.Entities.Event");
+                    b.HasBaseType("EventReminder.Domain.Events.Event");
 
                     b.HasDiscriminator().HasValue(1);
                 });
 
-            modelBuilder.Entity("EventReminder.Domain.Entities.PersonalEvent", b =>
+            modelBuilder.Entity("EventReminder.Domain.Events.PersonalEvent", b =>
                 {
-                    b.HasBaseType("EventReminder.Domain.Entities.Event");
+                    b.HasBaseType("EventReminder.Domain.Events.Event");
 
                     b.Property<bool>("Processed")
                         .ValueGeneratedOnAdd()
@@ -315,30 +317,47 @@ namespace EventReminder.Persistence.Migrations
                     b.HasDiscriminator().HasValue(0);
                 });
 
-            modelBuilder.Entity("EventReminder.Domain.Entities.Attendee", b =>
+            modelBuilder.Entity("EventReminder.Domain.Events.Attendee", b =>
                 {
-                    b.HasOne("EventReminder.Domain.Entities.Event", null)
+                    b.HasOne("EventReminder.Domain.Events.Event", null)
                         .WithMany()
                         .HasForeignKey("EventId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.HasOne("EventReminder.Domain.Entities.User", null)
+                    b.HasOne("EventReminder.Domain.Users.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("EventReminder.Domain.Entities.Event", b =>
+            modelBuilder.Entity("EventReminder.Domain.Events.Event", b =>
                 {
-                    b.HasOne("EventReminder.Domain.Entities.User", null)
+                    b.HasOne("EventReminder.Domain.Users.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.OwnsOne("EventReminder.Domain.ValueObjects.Name", "Name", b1 =>
+                    b.OwnsOne("EventReminder.Domain.Events.Category", "Category", b1 =>
+                        {
+                            b1.Property<Guid>("EventId")
+                                .HasColumnType("uniqueidentifier");
+
+                            b1.Property<int>("Value")
+                                .HasColumnType("int")
+                                .HasColumnName("Category");
+
+                            b1.HasKey("EventId");
+
+                            b1.ToTable("Event");
+
+                            b1.WithOwner()
+                                .HasForeignKey("EventId");
+                        });
+
+                    b.OwnsOne("EventReminder.Domain.Events.Name", "Name", b1 =>
                         {
                             b1.Property<Guid>("EventId")
                                 .HasColumnType("uniqueidentifier");
@@ -357,72 +376,76 @@ namespace EventReminder.Persistence.Migrations
                                 .HasForeignKey("EventId");
                         });
 
-                    b.Navigation("Name");
+                    b.Navigation("Category")
+                        .IsRequired();
+
+                    b.Navigation("Name")
+                        .IsRequired();
                 });
 
-            modelBuilder.Entity("EventReminder.Domain.Entities.Friendship", b =>
+            modelBuilder.Entity("EventReminder.Domain.Friendships.Friendship", b =>
                 {
-                    b.HasOne("EventReminder.Domain.Entities.User", null)
+                    b.HasOne("EventReminder.Domain.Users.User", null)
                         .WithMany()
                         .HasForeignKey("FriendId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.HasOne("EventReminder.Domain.Entities.User", null)
+                    b.HasOne("EventReminder.Domain.Users.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("EventReminder.Domain.Entities.FriendshipRequest", b =>
+            modelBuilder.Entity("EventReminder.Domain.Friendships.FriendshipRequest", b =>
                 {
-                    b.HasOne("EventReminder.Domain.Entities.User", null)
+                    b.HasOne("EventReminder.Domain.Users.User", null)
                         .WithMany()
                         .HasForeignKey("FriendId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.HasOne("EventReminder.Domain.Entities.User", null)
+                    b.HasOne("EventReminder.Domain.Users.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("EventReminder.Domain.Entities.Invitation", b =>
+            modelBuilder.Entity("EventReminder.Domain.Invitations.Invitation", b =>
                 {
-                    b.HasOne("EventReminder.Domain.Entities.Event", null)
+                    b.HasOne("EventReminder.Domain.Events.Event", null)
                         .WithMany()
                         .HasForeignKey("EventId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.HasOne("EventReminder.Domain.Entities.User", null)
+                    b.HasOne("EventReminder.Domain.Users.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("EventReminder.Domain.Entities.Notification", b =>
+            modelBuilder.Entity("EventReminder.Domain.Notifications.Notification", b =>
                 {
-                    b.HasOne("EventReminder.Domain.Entities.Event", null)
+                    b.HasOne("EventReminder.Domain.Events.Event", null)
                         .WithMany()
                         .HasForeignKey("EventId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.HasOne("EventReminder.Domain.Entities.User", null)
+                    b.HasOne("EventReminder.Domain.Users.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("EventReminder.Domain.Entities.User", b =>
+            modelBuilder.Entity("EventReminder.Domain.Users.User", b =>
                 {
-                    b.OwnsOne("EventReminder.Domain.ValueObjects.Email", "Email", b1 =>
+                    b.OwnsOne("EventReminder.Domain.Users.Email", "Email", b1 =>
                         {
                             b1.Property<Guid>("UserId")
                                 .HasColumnType("uniqueidentifier");
@@ -441,7 +464,7 @@ namespace EventReminder.Persistence.Migrations
                                 .HasForeignKey("UserId");
                         });
 
-                    b.OwnsOne("EventReminder.Domain.ValueObjects.FirstName", "FirstName", b1 =>
+                    b.OwnsOne("EventReminder.Domain.Users.FirstName", "FirstName", b1 =>
                         {
                             b1.Property<Guid>("UserId")
                                 .HasColumnType("uniqueidentifier");
@@ -460,7 +483,7 @@ namespace EventReminder.Persistence.Migrations
                                 .HasForeignKey("UserId");
                         });
 
-                    b.OwnsOne("EventReminder.Domain.ValueObjects.LastName", "LastName", b1 =>
+                    b.OwnsOne("EventReminder.Domain.Users.LastName", "LastName", b1 =>
                         {
                             b1.Property<Guid>("UserId")
                                 .HasColumnType("uniqueidentifier");
@@ -479,11 +502,14 @@ namespace EventReminder.Persistence.Migrations
                                 .HasForeignKey("UserId");
                         });
 
-                    b.Navigation("Email");
+                    b.Navigation("Email")
+                        .IsRequired();
 
-                    b.Navigation("FirstName");
+                    b.Navigation("FirstName")
+                        .IsRequired();
 
-                    b.Navigation("LastName");
+                    b.Navigation("LastName")
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

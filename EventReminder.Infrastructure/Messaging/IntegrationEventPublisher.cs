@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Text;
-using EventReminder.Application.Core.Abstractions.Messaging;
+using EventReminder.Application.Abstractions.Messaging;
 using EventReminder.Infrastructure.Messaging.Settings;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
-using EventReminder.Application.Core.Abstractions.Emails;
-using EventReminder.Application.Core.Abstractions.Notifications;
+using EventReminder.Application.Abstractions.Emails;
+using EventReminder.Application.Abstractions.Notifications;
 using EventReminder.Contracts.Emails;
 
 namespace EventReminder.Infrastructure.Notifications

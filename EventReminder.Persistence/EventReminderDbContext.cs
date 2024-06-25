@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Threading;
-using System.Threading.Tasks;
-using EventReminder.Application.Core.Abstractions.Common;
-using EventReminder.Application.Core.Abstractions.Data;
+﻿using EventReminder.Application.Abstractions.Common;
+using EventReminder.Application.Abstractions.Data;
 using EventReminder.Domain.Core.Abstractions;
 using EventReminder.Domain.Core.Events;
 using EventReminder.Domain.Core.Primitives;
@@ -16,6 +10,12 @@ using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Storage;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace EventReminder.Persistence
 {
@@ -72,7 +72,7 @@ namespace EventReminder.Persistence
             => Database.ExecuteSqlRawAsync(sql, parameters, cancellationToken);
 
         /// <summary>
-        /// Saves all of the pending changes in the unit of work.
+        /// Saves all the pending changes in the unit of work.
         /// </summary>
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>The number of entities that have been saved.</returns>

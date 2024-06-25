@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Security.Claims;
-using EventReminder.Application.Core.Abstractions.Authentication;
+using EventReminder.Application.Abstractions.Authentication;
 using Microsoft.AspNetCore.Http;
 
 namespace EventReminder.Infrastructure.Authentication

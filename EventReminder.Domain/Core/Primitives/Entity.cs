@@ -1,5 +1,5 @@
 ﻿using System;
-using EventReminder.Domain.Core.Utility;
+using EventReminder.Domain.Core.Guards;
 
 namespace EventReminder.Domain.Core.Primitives
 {

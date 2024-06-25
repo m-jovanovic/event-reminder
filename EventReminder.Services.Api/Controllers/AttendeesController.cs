@@ -1,12 +1,9 @@
-﻿using System;
-using System.Threading.Tasks;
-using EventReminder.Application.Attendees.Queries.GetAttendeesForEventId;
+﻿using EventReminder.Application.Attendees.GetAttendeesForEventId;
 using EventReminder.Contracts.Attendees;
 using EventReminder.Domain.Core.Primitives.Maybe;
 using EventReminder.Services.Api.Contracts;
 using EventReminder.Services.Api.Infrastructure;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EventReminder.Services.Api.Controllers

@@ -1,4 +1,4 @@
-﻿using EventReminder.Application.Core.Abstractions.Messaging;
+﻿using EventReminder.Application.Abstractions.Messaging;
 
 namespace EventReminder.BackgroundTasks.Services
 {

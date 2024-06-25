@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using EventReminder.Application.Core.Abstractions.Emails;
+using EventReminder.Application.Abstractions.Emails;
 using EventReminder.Contracts.Emails;
 using EventReminder.Infrastructure.Emails.Settings;
 using MailKit.Net.Smtp;

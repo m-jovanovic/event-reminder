@@ -1,13 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using EventReminder.Application.Core.Abstractions.Common;
-using EventReminder.Application.Core.Abstractions.Data;
-using EventReminder.Application.Core.Abstractions.Notifications;
+using EventReminder.Application.Abstractions.Common;
+using EventReminder.Application.Abstractions.Data;
+using EventReminder.Application.Abstractions.Notifications;
 using EventReminder.Contracts.Emails;
 using EventReminder.Domain.Core.Primitives.Result;
-using EventReminder.Domain.Entities;
-using EventReminder.Domain.Repositories;
+using EventReminder.Domain.Events;
+using EventReminder.Domain.Notifications;
+using EventReminder.Domain.Users;
 
 namespace EventReminder.BackgroundTasks.Services
 {

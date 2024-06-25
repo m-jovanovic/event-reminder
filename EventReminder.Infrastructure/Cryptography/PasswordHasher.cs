@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Security.Cryptography;
-using EventReminder.Application.Core.Abstractions.Cryptography;
-using EventReminder.Domain.Services;
-using EventReminder.Domain.ValueObjects;
+using EventReminder.Application.Abstractions.Cryptography;
+using EventReminder.Domain.Users;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 
 namespace EventReminder.Infrastructure.Cryptography

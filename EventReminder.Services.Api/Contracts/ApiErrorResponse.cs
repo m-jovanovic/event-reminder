@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using EventReminder.Domain.Core.Primitives;
+﻿using EventReminder.Domain.Core.Primitives;
 
 namespace EventReminder.Services.Api.Contracts
 {

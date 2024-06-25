@@ -1,17 +1,14 @@
-﻿using System;
-using System.Threading.Tasks;
-using EventReminder.Application.FriendshipRequests.Commands.AcceptFriendshipRequest;
-using EventReminder.Application.FriendshipRequests.Commands.RejectFriendshipRequest;
-using EventReminder.Application.FriendshipRequests.Queries.GetFriendshipRequestById;
-using EventReminder.Application.FriendshipRequests.Queries.GetPendingFriendshipRequests;
-using EventReminder.Application.FriendshipRequests.Queries.GetSentFriendshipRequests;
+﻿using EventReminder.Application.FriendshipRequests.AcceptFriendshipRequest;
+using EventReminder.Application.FriendshipRequests.GetFriendshipRequestById;
+using EventReminder.Application.FriendshipRequests.GetPendingFriendshipRequests;
+using EventReminder.Application.FriendshipRequests.GetSentFriendshipRequests;
+using EventReminder.Application.FriendshipRequests.RejectFriendshipRequest;
 using EventReminder.Contracts.FriendshipRequests;
 using EventReminder.Domain.Core.Primitives.Maybe;
 using EventReminder.Domain.Core.Primitives.Result;
 using EventReminder.Services.Api.Contracts;
 using EventReminder.Services.Api.Infrastructure;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EventReminder.Services.Api.Controllers

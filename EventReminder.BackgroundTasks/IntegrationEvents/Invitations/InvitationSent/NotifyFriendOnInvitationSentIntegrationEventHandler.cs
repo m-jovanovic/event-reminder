@@ -1,15 +1,16 @@
 ﻿using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
-using EventReminder.Application.Core.Abstractions.Notifications;
-using EventReminder.Application.Invitations.Events.InvitationSent;
+using EventReminder.Application.Abstractions.Notifications;
+using EventReminder.Application.Invitations.InvitationSent;
 using EventReminder.BackgroundTasks.Abstractions.Messaging;
 using EventReminder.Contracts.Emails;
 using EventReminder.Domain.Core.Errors;
 using EventReminder.Domain.Core.Exceptions;
 using EventReminder.Domain.Core.Primitives.Maybe;
-using EventReminder.Domain.Entities;
-using EventReminder.Domain.Repositories;
+using EventReminder.Domain.Events;
+using EventReminder.Domain.Invitations;
+using EventReminder.Domain.Users;
 
 namespace EventReminder.BackgroundTasks.IntegrationEvents.Invitations.InvitationSent
 {

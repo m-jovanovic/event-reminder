@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using EventReminder.Domain.Entities;
+using EventReminder.Domain.Events;
 
 namespace EventReminder.Persistence.Specifications
 {

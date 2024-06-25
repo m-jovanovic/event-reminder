@@ -1,13 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
 	<Nullable>enable</Nullable>
   </PropertyGroup>
 
 
   <ItemGroup>
-    <PackageReference Include="MediatR" Version="12.1.1" />
+    <PackageReference Include="MediatR.Contracts" Version="2.0.1" />
   </ItemGroup>
 
 </Project>

@@ -1,4 +1,4 @@
-﻿using EventReminder.Application.Core.Abstractions.Messaging;
+﻿using EventReminder.Application.Abstractions.Messaging;
 using MediatR;
 
 namespace EventReminder.BackgroundTasks.Abstractions.Messaging

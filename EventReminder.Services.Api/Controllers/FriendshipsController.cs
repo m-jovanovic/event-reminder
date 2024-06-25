@@ -1,8 +1,6 @@
-﻿using System;
-using System.Threading.Tasks;
-using EventReminder.Application.Friendships.Commands.RemoveFriendship;
-using EventReminder.Application.Friendships.Queries.GetFriendship;
-using EventReminder.Application.Friendships.Queries.GetFriendshipsForUserId;
+﻿using EventReminder.Application.Friendships.GetFriendship;
+using EventReminder.Application.Friendships.GetFriendshipsForUserId;
+using EventReminder.Application.Friendships.RemoveFriendship;
 using EventReminder.Contracts.Common;
 using EventReminder.Contracts.Friendships;
 using EventReminder.Domain.Core.Primitives.Maybe;
@@ -10,7 +8,6 @@ using EventReminder.Domain.Core.Primitives.Result;
 using EventReminder.Services.Api.Contracts;
 using EventReminder.Services.Api.Infrastructure;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EventReminder.Services.Api.Controllers

@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using EventReminder.Application.Core.Abstractions.Data;
-using EventReminder.Domain.Entities;
-using EventReminder.Domain.Repositories;
+using EventReminder.Application.Abstractions.Data;
+using EventReminder.Domain.Events;
+using EventReminder.Domain.Notifications;
+using EventReminder.Domain.Users;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 

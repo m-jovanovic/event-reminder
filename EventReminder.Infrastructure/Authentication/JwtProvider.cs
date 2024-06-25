@@ -2,9 +2,9 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using EventReminder.Application.Core.Abstractions.Authentication;
-using EventReminder.Application.Core.Abstractions.Common;
-using EventReminder.Domain.Entities;
+using EventReminder.Application.Abstractions.Authentication;
+using EventReminder.Application.Abstractions.Common;
+using EventReminder.Domain.Users;
 using EventReminder.Infrastructure.Authentication.Settings;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;

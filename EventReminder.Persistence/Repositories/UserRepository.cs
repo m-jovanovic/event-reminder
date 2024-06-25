@@ -1,9 +1,7 @@
 ﻿using System.Threading.Tasks;
-using EventReminder.Application.Core.Abstractions.Data;
+using EventReminder.Application.Abstractions.Data;
 using EventReminder.Domain.Core.Primitives.Maybe;
-using EventReminder.Domain.Entities;
-using EventReminder.Domain.Repositories;
-using EventReminder.Domain.ValueObjects;
+using EventReminder.Domain.Users;
 using EventReminder.Persistence.Specifications;
 
 namespace EventReminder.Persistence.Repositories

@@ -9,7 +9,8 @@ services:
       dockerfile: EventReminder.Services.Api/Dockerfile
     restart: always
     ports:
-      - "8080:80"
+      - 5000:8080
+      - 5001:8081
     environment:
       ASPNETCORE_ENVIRONMENT: "Development"
 
@@ -21,7 +22,8 @@ services:
       dockerfile: EventReminder.Services.Notifications/Dockerfile
     restart: always
     ports:
-      - "8081:80"
+      - 6000:8080
+      - 6001:8081
     environment:
       ASPNETCORE_ENVIRONMENT: "Development"
 
@@ -39,7 +41,7 @@ services:
   event-reminder-queue:
     image: rabbitmq:management
     container_name: EventReminder.Queue
-    hostname: newsletter-mq
+    hostname: event-reminder-mq
     volumes:
         - ./.containers/queue/data/:/var/lib/rabbitmq
         - ./.containers/queue/log/:/var/log/rabbitmq

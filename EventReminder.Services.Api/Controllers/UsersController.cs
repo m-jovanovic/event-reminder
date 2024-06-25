@@ -1,9 +1,7 @@
-﻿using System;
-using System.Threading.Tasks;
-using EventReminder.Application.Users.Commands.ChangePassword;
-using EventReminder.Application.Users.Commands.SendFriendshipRequest;
-using EventReminder.Application.Users.Commands.UpdateUser;
-using EventReminder.Application.Users.Queries.GetUserById;
+﻿using EventReminder.Application.Users.ChangePassword;
+using EventReminder.Application.Users.GetUserById;
+using EventReminder.Application.Users.SendFriendshipRequest;
+using EventReminder.Application.Users.UpdateUser;
 using EventReminder.Contracts.Users;
 using EventReminder.Domain.Core.Errors;
 using EventReminder.Domain.Core.Primitives.Maybe;
@@ -11,7 +9,6 @@ using EventReminder.Domain.Core.Primitives.Result;
 using EventReminder.Services.Api.Contracts;
 using EventReminder.Services.Api.Infrastructure;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EventReminder.Services.Api.Controllers

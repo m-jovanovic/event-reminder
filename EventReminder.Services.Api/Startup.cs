@@ -1,16 +1,9 @@
-using System;
 using EventReminder.Application;
 using EventReminder.Infrastructure;
 using EventReminder.Persistence;
 using EventReminder.Services.Api.Middleware;
-using FluentValidation.AspNetCore;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 
 [assembly: ApiController]
@@ -30,7 +23,9 @@ namespace EventReminder.Services.Api
                 .AddInfrastructure(Configuration)
                 .AddPersistence(Configuration);
 
-            services.AddControllers().AddFluentValidation();
+            services.AddHttpContextAccessor();
+
+            services.AddControllers();
 
             services.Configure<ApiBehaviorOptions>(options => options.SuppressModelStateInvalidFilter = true);
 

@@ -2,12 +2,11 @@
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using EventReminder.Application.Core.Abstractions.Common;
-using EventReminder.Application.Core.Abstractions.Data;
+using EventReminder.Application.Abstractions.Common;
+using EventReminder.Application.Abstractions.Data;
 using EventReminder.Domain.Core.Primitives.Result;
-using EventReminder.Domain.Entities;
-using EventReminder.Domain.Enumerations;
-using EventReminder.Domain.Repositories;
+using EventReminder.Domain.Events;
+using EventReminder.Domain.Notifications;
 
 namespace EventReminder.BackgroundTasks.Services
 {

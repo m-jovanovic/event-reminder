@@ -1,6 +1,5 @@
-﻿using System.Threading.Tasks;
-using EventReminder.Application.Authentication.Commands.Login;
-using EventReminder.Application.Users.Commands.CreateUser;
+﻿using EventReminder.Application.Authentication.Login;
+using EventReminder.Application.Users.CreateUser;
 using EventReminder.Contracts.Authentication;
 using EventReminder.Domain.Core.Errors;
 using EventReminder.Domain.Core.Primitives.Result;
@@ -8,7 +7,6 @@ using EventReminder.Services.Api.Contracts;
 using EventReminder.Services.Api.Infrastructure;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EventReminder.Services.Api.Controllers

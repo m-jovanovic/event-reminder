@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using EventReminder.Application.GroupEvents.Commands.CancelGroupEvent;
-using EventReminder.Application.GroupEvents.Commands.CreateGroupEvent;
-using EventReminder.Application.GroupEvents.Commands.InviteFriendToGroupEvent;
-using EventReminder.Application.GroupEvents.Commands.UpdateGroupEvent;
-using EventReminder.Application.GroupEvents.Queries.Get10MostRecentAttendingGroupEvents;
-using EventReminder.Application.GroupEvents.Queries.GetGroupEventById;
-using EventReminder.Application.GroupEvents.Queries.GetGroupEvents;
+﻿using EventReminder.Application.GroupEvents.CancelGroupEvent;
+using EventReminder.Application.GroupEvents.CreateGroupEvent;
+using EventReminder.Application.GroupEvents.Get10MostRecentAttendingGroupEvents;
+using EventReminder.Application.GroupEvents.GetGroupEventById;
+using EventReminder.Application.GroupEvents.GetGroupEvents;
+using EventReminder.Application.GroupEvents.InviteFriendToGroupEvent;
+using EventReminder.Application.GroupEvents.UpdateGroupEvent;
 using EventReminder.Contracts.Common;
 using EventReminder.Contracts.GroupEvents;
 using EventReminder.Domain.Core.Errors;
@@ -16,7 +13,6 @@ using EventReminder.Domain.Core.Primitives.Result;
 using EventReminder.Services.Api.Contracts;
 using EventReminder.Services.Api.Infrastructure;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EventReminder.Services.Api.Controllers
